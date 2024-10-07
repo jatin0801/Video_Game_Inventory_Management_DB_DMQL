@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Query</h1>
+    <h3>{{ sql_query }}</h3>
+    <h1>Query Results</h1>
+    {% if results %}
+        <table>
+            <tr>
+                {% for column_name in column_names %}
+                    <th>{{ column_name }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in results %}
+                <tr>
+                    {% for value in row %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Go back</a>
+</body>
+</html>

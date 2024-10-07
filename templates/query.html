@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Execute Query</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1><center>Execute Query</center></h1>
+    <h2>Relational Schemas</h2>
+    <ul>
+        <li><b>Games:</b> (game_id (PK), rank, title, release_year, platform_id (FK), genre_id (FK), publisher_id (FK), NA_sales, EU_sales, NJ_sales, Other_Sales, Global_Sales)</li>
+        <li><b>Customers:</b> (customer_id (PK), name, phone_number, address, email, dob)</li>
+        <li><b>PreownedSeller:</b> (seller_id (PK), name, phone_number, email, address, rating)</li>
+        <li><b>Platform:</b> (platform_id (PK), platform_name)</li>
+        <li><b>Retailer:</b> (retailer_id (PK), name, rating)</li>
+        <li><b>Genre:</b> (genre_id (PK), genre)</li>
+        <li><b>Publisher:</b> (publisher_id (PK), publisher_name)</li>
+        <li><b>Reviews:</b> (review_id (PK), game_id (FK), customer_id (FK), rating, review)</li>
+        <li><b>Sales:</b> (game_id (FK), customer_id (FK), date)</li>
+        <li><b>Price History:</b> (date, price, game_id (FK))</li>
+    </ul>
+    <center>
+    <form method="post" action="{{ url_for('query') }}">
+        <label for="query">Enter your SQL query:</label><br>
+        <textarea name="query" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Execute Query">
+    </form>
+    <a href="{{ url_for('index') }}">Go back</a>
+    </center>
+</body>
+</html>
